@@ -26,28 +26,36 @@ namespace RogersReminders
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            // selectt the first item in the drop down 
-            ReminderType.SelectedIndex = 0;
-            // store each line of tthe reminders file as an index in an array
-            string[] reminders = File.ReadAllLines(file);
-
-            // iterate over the array
-            foreach (string reminder in reminders)
+            // check if the file exists before trying to load it
+            if (!File.Exists(file))
             {
-                if(string.IsNullOrWhiteSpace(reminder))
+                return;
+            } else
+            {
+                // selectt the first item in the drop down 
+                ReminderType.SelectedIndex = 0;
+                // store each line of tthe reminders file as an index in an array
+                string[] reminders = File.ReadAllLines(file);
+
+                // iterate over the array
+                foreach (string reminder in reminders)
                 {
-                    // dont add the reminder if it doesn't contain a value
-                } else
-                {
-                    // add the reminder to the list of reminders
-                    ReminderList.Items.Add(reminder);
+                    if (string.IsNullOrWhiteSpace(reminder))
+                    {
+                        // dont add the reminder if it doesn't contain a value
+                    }
+                    else
+                    {
+                        // add the reminder to the list of reminders
+                        ReminderList.Items.Add(reminder);
+                    }
                 }
             }
         }
 
         private void Submit_Click(object sender, EventArgs e)
         {
-            //check each input ad ensure that they have a value
+            //check each input and ensure that they have a value
             if (string.IsNullOrWhiteSpace(ReminderType.Text))
             {
                 MessageBox.Show("You must select an item from the list");
@@ -227,11 +235,16 @@ namespace RogersReminders
 
         private void AddEdited_Click(object sender, EventArgs e)
         {
+            //store all reminders into an array from reminders file
+            string[] reminders = File.ReadAllLines(file);
+            //create a new list to store the edited reminder and unchanged reminders
+            List<string> replace = new List<string>();
+
             // check if the edit box is empty
             if (String.IsNullOrWhiteSpace(EditInput.Text))
             {
                 // alert the user that the edit box must contain a value
-                MessageBox.Show("The edited reminder must contain a value");
+                MessageBox.Show("The edited reminder must contain textt");
                 return;
             }
 
@@ -239,6 +252,26 @@ namespace RogersReminders
             ReminderList.Items.Remove(reminderEdit);
             // add the edited reminder to the reminder list
             ReminderList.Items.Add(EditInput.Text);
+
+            // loop over each reminder in the array and check if it matches the reminder that the user selected
+            foreach(string reminder in reminders)
+            {
+                if(reminder == reminderEdit)
+                {
+                    //replace the old reminder with the new reminder
+                    string newReminder = reminder.Replace(reminder, EditInput.Text);
+                    // add the edited reminder to the list
+                    replace.Add(newReminder);
+                } else
+                {
+                    // add the unchanged reminder to the list
+                    replace.Add(reminder);
+                }
+            }
+
+            //overwrite the file with the edited reminder
+            File.WriteAllLines(file, replace);
+
             // remove the contents of the edit box
             EditInput.Text = "";
         }
