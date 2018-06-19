@@ -87,7 +87,7 @@
             // ClearSelected
             // 
             this.ClearSelected.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.ClearSelected.Location = new System.Drawing.Point(453, 362);
+            this.ClearSelected.Location = new System.Drawing.Point(451, 362);
             this.ClearSelected.Name = "ClearSelected";
             this.ClearSelected.Size = new System.Drawing.Size(117, 29);
             this.ClearSelected.TabIndex = 7;
@@ -174,7 +174,7 @@
             // EditSelected
             // 
             this.EditSelected.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.EditSelected.Location = new System.Drawing.Point(330, 362);
+            this.EditSelected.Location = new System.Drawing.Point(453, 148);
             this.EditSelected.Name = "EditSelected";
             this.EditSelected.Size = new System.Drawing.Size(117, 29);
             this.EditSelected.TabIndex = 24;
@@ -204,7 +204,7 @@
             // EditInput
             // 
             this.EditInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.EditInput.Location = new System.Drawing.Point(330, 336);
+            this.EditInput.Location = new System.Drawing.Point(328, 118);
             this.EditInput.Name = "EditInput";
             this.EditInput.Size = new System.Drawing.Size(242, 24);
             this.EditInput.TabIndex = 28;
@@ -212,7 +212,7 @@
             // AddEdited
             // 
             this.AddEdited.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.AddEdited.Location = new System.Drawing.Point(330, 406);
+            this.AddEdited.Location = new System.Drawing.Point(455, 183);
             this.AddEdited.Name = "AddEdited";
             this.AddEdited.Size = new System.Drawing.Size(117, 29);
             this.AddEdited.TabIndex = 29;
